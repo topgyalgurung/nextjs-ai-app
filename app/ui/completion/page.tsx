@@ -22,7 +22,6 @@ export default function CompletionPage(){
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({ prompt, model }),
-
             });
 
             const data = await response.json();
