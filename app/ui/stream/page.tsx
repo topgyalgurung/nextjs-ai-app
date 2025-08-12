@@ -53,6 +53,7 @@ export default function CompletionStreamPage() {
             onChange={handleInputChange}
             placeholder="How can I help you?"
           />
+          
           {isLoading ? (
             <button
               onClick={stop}
