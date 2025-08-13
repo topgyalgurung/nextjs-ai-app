@@ -12,8 +12,7 @@ export async function POST(req: Request) {
         } else {
             // Default to OpenAI if not specified or "open-ai"
             aiModel = openai("gpt-4.1-nano"); // cheapest model
-            // aiModel = openai("gpt-4o-mini"); // more powerful mini version
-            
+            // aiModel = openai("gpt-4o-mini"); // more powerful mini version        
         }
 
         const { text } = await generateText({

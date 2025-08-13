@@ -9,8 +9,7 @@ export default function CompletionPage(){
     const [isLoading, setIsLoading] = useState(false); // loading flag
     const [error, setError] = useState<string | null>(null);
     const [model, setModel] = useState("open-ai"); // default to OpenAI
-
-
+  
     const complete = async(e: React.FormEvent) =>{
         e.preventDefault();
         setIsLoading(true);
