@@ -7,8 +7,13 @@ export default function CompletionPage(){
     const [prompt, setPrompt] = useState(""); // user input 
     const [completion, setCompletion] = useState(""); // AI response 
     const [isLoading, setIsLoading] = useState(false); // loading flag
+<<<<<<< HEAD
     const [error, setError] = useState<string | null>(null);
     const [model, setModel] = useState("open-ai"); // default to OpenAI
+
+=======
+    const[error, setError] = useState <string | null> (null);
+>>>>>>> c220ce0 (build ui search input and post route to get req body)
 
     const complete = async(e: React.FormEvent) =>{
         e.preventDefault();
@@ -20,7 +25,12 @@ export default function CompletionPage(){
             const response = await fetch("/api/completion",{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
+<<<<<<< HEAD
                 body: JSON.stringify({ prompt, model }),
+
+=======
+                body: JSON.stringify({prompt}),
+>>>>>>> c220ce0 (build ui search input and post route to get req body)
             });
 
             const data = await response.json();
@@ -42,6 +52,7 @@ export default function CompletionPage(){
     }
 
     return(
+<<<<<<< HEAD
         <div className="flex flex-col h-screen bg-gray-100">
             <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
                 {error && (
@@ -127,4 +138,22 @@ export default function CompletionPage(){
                 }
             `}</style>
         </div>
+    )}
+=======
+        <div>
+            <form onSubmit={complete}>
+                <div>
+                    <input
+                        value = {prompt}
+                        onChange= {(e) => setPrompt(e.target.value)}
+                           placeholder='How can I help you'
+                    />
+                    <button type = "submit" disabled ={isLoading}> Send</button>
+
+                </div>
+            </form>
+        </div>
     )
+}
+>>>>>>> c220ce0 (build ui search input and post route to get req body)
+
