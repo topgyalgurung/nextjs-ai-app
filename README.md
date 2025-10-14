@@ -1,54 +1,109 @@
+# AI Text Completion in Next.js
 
-## Next.js AI SDK 
+**GitHub:** [Next.js AI Tutorials](https://github.com/gopinav/Next.js-AI-Tutorials)
 
-The AI SDK is the TypeScript toolkit designed to help developers build AI-powered applications and agents with React, Next.js, Vue, Svelte, Node.js, and more.
+A Next.js project demonstrating AI-powered text completion and chat interactions using the **Vercel AI SDK** and **OpenAI API**. The project includes real-time text streaming, conversation history, and multi-model support.
 
-- two main libraries:
-  - AI SDK Core
-  - AI SDK UI
-  
-### Project Setup 
+#### Tech Stack
+- Frontend: Next.js, React, TypeScript
+- AI SDK: Vercel AI SDK, OpenAI API
+- Other Tools: REST API, Streaming Responses, useChat Hooks
+
+---
+
+## Features
+
+- AI SDK integration with its 3 main parts:
+  - **Core**
+  - **UI Hooks**
+  - **Experimental RSC**
+- Real-time text streaming instead of waiting for the full response
+- Support for multiple AI models (LLMs, embeddings, image, multimodal)
+- Chat system with conversation history, route handler, and token tracking
+- Prompt engineering and token optimization for performance and cost efficiency
+
+---
+
+## Project Setup
+
+1. Clone the repository:
+
 ```bash
-npm instal ai @ai-sdk/openai @ai-sdk/react zod 
+git clone https://github.com/gopinav/Next.js-AI-Tutorials.git
+cd Next.js-AI-Tutorials
 ```
-- get open ai api key and store into .env.local 
 
-
-_____
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
+2. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Configure your environment variables for OpenAI API keys and any other required credentials.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+----
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Generate Text
+- Use the AI SDK to generate text programmatically.
+- Streaming responses show text as soon as AI starts generating it, improving user experience.
 
-## Learn More
+#### Stream Text
+- Instead of waiting for the entire response, start showing text as soon as AI starts generating it.
 
-To learn more about Next.js, take a look at the following resources:
+### AI Models and Providers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Types of Models
+1. Text Generation Models (LLMs): GPT-4, Claude, Gemini
+2. Embedding Models: Convert text into numeric vectors
+3. Image Models: MidJourney, DALL-E, Flux
+4. Multi-modal Models: GPT-4, Claude-4, Gemini
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### Model Characteristics
+- Context Window: How much the model can remember in one session
+- Intelligence: Quality of generated responses
+- Speed: Response time
+- Cost: API usage pricing
 
-## Deploy on Vercel
+#### Providers
+- OpenAI
+- Anthropic
+- Google
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Tokens
+- Tokens are the basic unit of text processed by the model (words, subwords, or characters).
+- Tokens determine:
+- How much text can be processed at once
+- API usage cost
+- Output quality
+- Context Window: Short-term memory for a conversation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Example usage: 
+```javascript
+
+result.usage.then((usage) => {
+  console.log({
+    inputTokens: usage.inputTokens,
+    outputTokens: usage.outputTokens,
+    totalTokens: usage.totalTokens,
+  });
+});
+```
+Note: Token counts from the console may differ from the tokenizer due to SDK system formatting and context inclusion.
+
+More info: [OpenAI Tokenizer](https://platform.openai.com/tokenizer)
+
+#### Chat with AI
+- AI models do not have memory by default. Maintain ordered conversation history and send it with every new prompt.
+- Chat system components:
+- Route handler to communicate with AI while maintaining history
+- Chat UI with message display
+- Token tracking to monitor usage
+- Client uses a controlled input form; useChat hook manages conversation streaming and state.
+- POST route handler extracts message from req.body, converts it to model format, and streams the response.
+
+#### Prompt Engineering
+
+I built an AI-powered text completion feature in Next.js using the Vercel AI SDK and OpenAI API, focusing on real-time text generation and chat interaction.
+- Project covered setup, token management, and integrating AI SDK’s three core parts: Core, UI hooks, and experimental RSC
+- Implemented streaming responses so text appears as the model generates it
+- Explored different model types (LLMs, embeddings, image, multimodal), providers, and token usage to optimize cost and performance
+- Built a chat system with conversation history, a route handler for API requests, token tracking, and a responsive chat UI powered by useChat.
