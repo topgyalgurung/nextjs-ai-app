@@ -1,4 +1,3 @@
-
 import { generateText } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { groq } from '@ai-sdk/groq';
@@ -15,6 +14,7 @@ export async function POST(req: Request) {
             aiModel = openai("gpt-4.1-nano"); // cheapest model
             // aiModel = openai("gpt-4o-mini"); // more powerful mini version        
         }
+
         const { text } = await generateText({
             model: aiModel,
             prompt,
